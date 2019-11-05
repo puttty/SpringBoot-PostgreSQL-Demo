@@ -1,13 +1,15 @@
 package sk.globallogic.postgredemo;
 
+import java.time.LocalDate;
+import java.time.Month;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import sk.globallogic.postgredemo.model.UserData;
-import sk.globallogic.postgredemo.repository.UserDataRepository;
+import sk.globallogic.postgredemo.entity.PlayerData;
+import sk.globallogic.postgredemo.repository.PlayerDataRepository;
 
 @SpringBootApplication
 public class PostgredemoApplication implements CommandLineRunner {
@@ -15,7 +17,7 @@ public class PostgredemoApplication implements CommandLineRunner {
 	private static final Logger log = LoggerFactory.getLogger(PostgredemoApplication.class);
 
 	@Autowired
-	private UserDataRepository repository;
+	private PlayerDataRepository repository;
 
 	public static void main(String[] args) {
 		SpringApplication.run(PostgredemoApplication.class, args);
@@ -26,9 +28,9 @@ public class PostgredemoApplication implements CommandLineRunner {
 
 		log.info("StartApplication...");
 
-		repository.save(new UserData("Palo", "Habera", 50));
-		repository.save(new UserData("Meky", "Zbirka", 60));
-		repository.save(new UserData("Marika", "Gombitova", 70));
+		repository.save(new PlayerData("Palo", "Habera", LocalDate.of(1969, Month.OCTOBER, 5)));
+		repository.save(new PlayerData("Meky", "Zbirka", LocalDate.of(1959, Month.OCTOBER, 5)));
+		repository.save(new PlayerData("Marika", "Gombitova", LocalDate.of(1949, Month.OCTOBER, 5)));
 
 		System.out.println("\nfindAll()");
 		repository.findAll().forEach(x -> System.out.println(x));
