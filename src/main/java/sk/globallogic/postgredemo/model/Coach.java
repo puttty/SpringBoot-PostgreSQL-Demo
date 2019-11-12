@@ -6,6 +6,8 @@ import java.util.List;
 
 public class Coach {
 
+	private long id;
+
 	private String firstName;
 
 	private String lastName;
@@ -21,8 +23,9 @@ public class Coach {
 	public Coach() {
 	}
 
-	public Coach(String firstName, String lastName, LocalDate birthDate, String nationaility,
+	public Coach(Long id, String firstName, String lastName, LocalDate birthDate, String nationaility,
 			List<Team> formerTeams) {
+		this.id = id;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.birthDate = birthDate;
@@ -31,7 +34,8 @@ public class Coach {
 		this.age = countAge(birthDate);
 	}
 
-	public Coach(String firstName, String lastName, LocalDate birthDate, String nationaility) {
+	public Coach(Long id, String firstName, String lastName, LocalDate birthDate, String nationaility) {
+		this.id = id;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.birthDate = birthDate;
@@ -92,10 +96,19 @@ public class Coach {
 		this.formerTeams = formerTeams;
 	}
 
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
+	}
+
 	@Override
 	public String toString() {
 		return "Coach{" +
-				"firstName='" + firstName + '\'' +
+				"id=" + id +
+				", firstName='" + firstName + '\'' +
 				", lastName='" + lastName + '\'' +
 				", birthDate=" + birthDate +
 				", age=" + age +

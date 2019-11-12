@@ -13,13 +13,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import sk.globallogic.postgredemo.entity.PlayerData;
 import sk.globallogic.postgredemo.repository.PlayerDataRepository;
 
 @RestController
-@RequestMapping("/postgre")
-public class dataController {
+@RequestMapping("/playerdata")
+public class PlayerDataController {
 
 	@Autowired
 	private PlayerDataRepository repository;
@@ -40,16 +41,16 @@ public class dataController {
 	}
 
 	@GetMapping(value = "/firstName")
-	public List<PlayerData> getUserDataByFirstName(@PathVariable("firstName") String firstName) {
+	public List<PlayerData> getUserDataByFirstName(@RequestParam("firstName") String firstName) {
 		return repository.findByFirstName(firstName);
 	}
 
 	@GetMapping(value = "/lastName")
-	public List<PlayerData> getUserDataByLastName(@PathVariable("lastName") String lastName) {
+	public List<PlayerData> getUserDataByLastName(@RequestParam("lastName") String lastName) {
 		return repository.findByLastName(lastName);
 	}
 
-	@PostMapping(value = "/post")
+	@PostMapping(value = "/postUser")
 	public PlayerData postUserData(@Valid @RequestBody PlayerData user) {
 		return repository.save(user);
 	}
